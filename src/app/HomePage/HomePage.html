@@ -1,0 +1,44 @@
+<div id="container">
+<div id="header">
+    <div id="user_icon">
+      <a href="LogIn.html"> <img src="../../assets/user_icon.png" width="30"></a>
+    </div>
+    <div id="menu">
+      <ul>
+        <li><router-outlet><a [routerLink]="routerLinkVariable">Movies</a></router-outlet></li>
+        <li><a href="HomePage.html">TV Series</a></li>
+      </ul>
+    </div>
+    <div id="searchBar">
+      <label>
+        <input class="form-control" type="text" placeholder="Search">
+      </label>
+    </div>
+  </div>
+</div>
+
+
+<div class="page">
+  <div class="left" *ngFor="let new of latest" >
+    <p style="color: antiquewhite">Latest Movie: {{ new.Title }}</p></div>
+
+  <div class="right">
+    <p style="color: antiquewhite">Top 3 best rated movies and TVSeries:</p>
+    <div *ngFor="let top of top5">
+    <p style="color: antiquewhite">{{top.Title}} - {{top.Rating}}</p></div>
+  </div>
+  <div class="content" *ngFor="let item of this.items">
+    <img width="150 px" src="{{item.Image}}">
+    <div class="text">
+    <p style="color: antiquewhite">{{item.Title}}</p>
+    <p style="color: antiquewhite">{{item.Description}}</p>
+    <p style="color: antiquewhite">{{item.Year}}</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

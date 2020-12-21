@@ -1,0 +1,77 @@
+#container{
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 10px;
+  background: #1c1c1b;
+}
+#header {
+    display: block;
+    margin-left: 3.5%;
+    margin-right: auto;
+    width: 50%;
+	  background: url(src/assets/logo.png) no-repeat;
+}
+
+#header a,a:hover {
+	color: #ffffff;
+}
+#header #user_icon{
+    float:left;
+    margin-top: 5%;
+    margin-left : 170%;
+    width: 10%;
+}
+#menu{
+  clear: both;
+    width: 960px;
+    height: 45px;
+}
+#menu ul {
+    padding:  0 0 0;
+    margin: 35%;
+    list-style: none;
+}
+
+#menu li{
+    display: inline;
+}
+#menu ul li a{
+    padding: 5%;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #D1A227;
+}
+#menu li a:hover, #menu li .current{
+    color: #fcf88e;
+}
+#header #searchBar {
+    float: left;
+    margin-top: -7%;
+    margin-left:120%;
+}
+.page{
+  margin:0 auto;
+  width: 92%;
+  background: #1c1c1b;
+}
+
+.left{
+  float:left;
+  width: 70%;
+}
+.right{
+  float: right;
+  width:30%;
+}
+.content{
+  float: top;
+}
+.text{
+  display: inline-block;
+  vertical-align: top;
+  float:right;
+  width: 85%;
+}
+
