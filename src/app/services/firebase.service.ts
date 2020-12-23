@@ -28,6 +28,10 @@ import {query} from '@angular/animations';
   getMoviesOnly(){
     return this.afs.collection('/products', ref => ref.where('Type', '==', 'Movie'));
   }
+  // tslint:disable-next-line:typedef
+  getTVSeriesOnly(){
+    return this.afs.collection('/products', ref => ref.where('Type', '==', 'TVSeries'));
+  }
 }
 
 export {FirebaseService};
