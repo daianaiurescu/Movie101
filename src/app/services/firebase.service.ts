@@ -24,6 +24,10 @@ import {query} from '@angular/animations';
   getTop5() {
     return this.afs.collection('/products', ref => ref.orderBy('Rating').limitToLast(3));
   }
+  // tslint:disable-next-line:typedef
+  getMoviesOnly(){
+    return this.afs.collection('/products', ref => ref.where('Type', '==', 'Movie'));
+  }
 }
 
 export {FirebaseService};
