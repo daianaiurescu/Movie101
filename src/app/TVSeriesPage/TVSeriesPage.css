@@ -1,0 +1,36 @@
+#page{
+  margin:0 auto;
+  width: 92%;
+  background: #1c1c1b;
+}
+
+.left{
+  float:left;
+  width: 75%;
+  height: auto;
+}
+.right{
+  float: right;
+  width:25%;
+  height: auto;
+}
+.text_left{
+  display: inline-block;
+  vertical-align: auto;
+  float: right;
+  width: 70%;
+}
+.content{
+  float:top;
+}
+.text{
+  display: inline-block;
+  vertical-align: top;
+  float:right;
+  width: 85%;
+}
+.border{
+  border-top: 5px solid #D1A227;
+  align: center;
+  width: 70%;
+}
