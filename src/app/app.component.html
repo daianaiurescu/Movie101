@@ -1,0 +1,24 @@
+<!--<HomePage></HomePage>-->
+<div id="container">
+  <div id="header">
+    <div id="user_icon">
+      <a [routerLink]="['/login']"> <img src="../../assets/user_icon.png" width="30"></a>
+    </div>
+    <div id="menu">
+      <ul>
+        <li><a [routerLink]="['/home']">Home</a> </li>
+        <li><a [routerLink]="['/movies']">Movies</a></li>
+        <li> <a [routerLink]="['/tvseries']">TV Series</a></li>
+      </ul>
+    </div>
+    <div id="searchBar">
+      <label>
+        <input class="form-control" type="text" placeholder="Search">
+      </label>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>
+
+
+

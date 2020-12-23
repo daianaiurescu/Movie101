@@ -1,0 +1,27 @@
+
+<div class="page">
+  <div class="left" *ngFor="let new of latest" >
+    <h3 style="color: antiquewhite">Latest Movie</h3>
+    <video controls class="video" (play)="toggleVideo()" autoplay width="250 px" #videoPlayer><source src="{{ new.Trailer }}" type="video/mp4">Video type not supported!</video>
+    <div class="text_left"><p style="color: antiquewhite">{{ new.Title }}</p> <p style="color: antiquewhite"> {{ new.Description }}</p></div>
+  </div>
+  <div class="right">
+    <h4 style="color: antiquewhite">Best rated movies and TVSeries:</h4>
+    <div *ngFor="let top of top5">
+    <p style="color: antiquewhite">{{top.Title}} - {{top.Rating}}</p></div>
+  </div>
+  <hr class="border">
+  <div class="content" *ngFor="let item of this.items">
+    <img width="150 px" src="{{item.Image}}">
+    <div class="text">
+    <p style="color: antiquewhite">{{item.Title}}</p>
+    <p style="color: antiquewhite">{{item.Description}}</p>
+    <p style="color: antiquewhite">{{item.Year}}</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+
