@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {FirebaseService} from './../services/firebase.service';
 
@@ -19,16 +19,33 @@ export class HomePage implements OnInit{
   items: Array<any>;
   latest: Array<any>;
   top5: Array<any>;
-  public routerLinkVariable = '/movies';
+  Video: HTMLVideoElement;
+
   // tslint:disable-next-line:typedef
   ngOnInit() {
     this.firebaseService.getProducts().valueChanges().subscribe(data => {console.log(data); this.items = data; }) ;
     this.firebaseService.getLatest().valueChanges().subscribe(data1 => {console.log(data1); this.latest = data1; });
     this.firebaseService.getTop5().valueChanges().subscribe(data2 => {console.log(data2); this.top5 = data2; });
+
   }
   // tslint:disable-next-line:typedef
-  getLatestMovie(){
-    this.latest = this.items.sort((a: any, b: any) => b.Title - a.Title);
+  gotoMovies(){
+    this.router.navigate(['/movies']);
+  }
+  // tslint:disable-next-line:typedef
+  gotoTVSeries(){
+    this.router.navigate(['/tvSeries']);
+  }
+  // tslint:disable-next-line:typedef
+  toggleVideo(){
+    // tslint:disable-next-line:prefer-const
+    if (!this.Video.paused) {
+      this.Video.pause();
+    } else {
+      this.Video.play();
+    }
+
+
   }
 }
 
