@@ -13,6 +13,8 @@ import {FormsModule} from '@angular/forms';
 import {MoviesPage} from './MoviesPage/MoviesPage';
 import {TVSeriesPage} from './TVSeriesPage/TVSeriesPage';
 import {LogIn} from './LogIn/LogIn';
+import {register} from './LogIn/register';
+import {ForgotPassword} from './LogIn/ForgotPassword';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import {LogIn} from './LogIn/LogIn';
     HomePage,
     MoviesPage,
     TVSeriesPage,
-    LogIn
+    LogIn,
+    register,
+    ForgotPassword
   ],
   imports: [
     BrowserModule,

@@ -1,56 +1,80 @@
-import {Injectable} from '@angular/core';
+import {Injectable, NgZone} from '@angular/core';
 import {Router} from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import 'firebase/auth';
-import auth from 'firebase';
 import firebase from 'firebase/app';
 import {async} from 'rxjs';
+import {AngularFirestoreDocument} from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService{
-  constructor(public  afAuth: AngularFireAuth, public  router: Router){
+  constructor(public  afAuth: AngularFireAuth, public  router: Router,  public ngZone: NgZone){
     this.afAuth.authState.subscribe(user => {
       if (user){
         this.user = user;
         localStorage.setItem('user', JSON.stringify(this.user));
+        JSON.parse(localStorage.getItem('user'));
       } else {
         localStorage.setItem('user', null);
+        JSON.parse(localStorage.getItem('user'));
       }
     });
   }
   user: any;
   // tslint:disable-next-line:typedef
-  async register(email: string, password: string) {
-    const result = await this.afAuth.createUserWithEmailAndPassword(email, password);
-    this.sendEmailVerification();
+  SignIn(email, password) {
+    return this.afAuth.signInWithEmailAndPassword(email, password)
+      .then((result) => {
+        this.ngZone.run(() => {
+          this.router.navigate(['userPage']);
+        });
+      }).catch((error) => {
+        window.alert(error.message);
+      });
   }
   // tslint:disable-next-line:typedef
-  async sendEmailVerification() {
-    await firebase.auth().currentUser.sendEmailVerification();
-    this.router.navigate(['verifyemail']);
+  SignUp(email, password) {
+    return this.afAuth.createUserWithEmailAndPassword(email, password)
+      .then((result) => {
+      }).catch((error) => {
+        window.alert(error.message);
+      });
   }
   // tslint:disable-next-line:typedef
-  async sendPasswordResetEmail(passwordResetEmail: string) {
-    return await this.afAuth.sendPasswordResetEmail(passwordResetEmail);
+  ForgotPassword(passwordResetEmail) {
+    return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
+      .then(() => {
+        window.alert('Password reset email sent, check your inbox.');
+      }).catch((error) => {
+        window.alert(error);
+      });
+  }
+
+  // Returns true when user is looged in and email is verified
+  get isLoggedIn(): boolean {
+    const user = JSON.parse(localStorage.getItem('user'));
+    return (user !== null && user.emailVerified !== false) ? true : false;
   }
   // tslint:disable-next-line:typedef
-  async logout(){
-    await this.afAuth.signOut();
-    localStorage.removeItem('user');
-    this.router.navigate(['login']);
+  loginWithGoogle() {
+    return this.AuthLogin(new firebase.auth.GoogleAuthProvider());
   }
+
   // tslint:disable-next-line:typedef
-  async  loginWithGoogle(){
-      return this.AuthLogin(new firebase.auth.GoogleAuthProvider());
-    }
-  // tslint:disable-next-line:typedef
-    AuthLogin(provider){
+  AuthLogin(provider) {
     return this.afAuth.signInWithPopup(provider).then((result) => {
       console.log('You have been successfully logged in!');
     }).catch((error) => {
       console.log(error);
     });
-    }
+  }
+  // tslint:disable-next-line:typedef
+  SignOut() {
+    return this.afAuth.signOut().then(() => {
+      localStorage.removeItem('user');
+      this.router.navigate(['LogIn']);
+    });
+  }
 }

@@ -3,6 +3,7 @@
   width: 50%;
   background: #1c1c1b;
   float: bottom;
+  height: 50%;
 }
 .border{
   border-top: 20px solid #D1A227;
@@ -22,4 +23,8 @@
   border-top: 30px solid #1c1c1b;
   align: center;
   width: 70%;
+}
+.bottom{
+  float:left;
+
 }

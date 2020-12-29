@@ -6,13 +6,20 @@
     <img src="https://placeimg.com/128/128/nature" style="margin-left: 20px; margin-bottom: 20px" >
       <div class="text_left">
         <form>
-<!--          <input type="text" class="form-control mb-2" placeholder="Email" [(ngModel)]="email" ]>-->
-<!--          <div class="border2"></div>-->
-<!--          <input type="password" class="form-control mb-2" placeholder="Password" [(ngModel)]="pass" )]>-->
-          <div class="border2"></div>
+     <input type="text" class="form-control mb-2" placeholder="Email" #email>
+      <div class="border2"></div>
+       <input type="password" class="form-control mb-2" placeholder="Password" #password>
+          <button class="btn btn-lg btn-primary btn-block mb-1" type="submit" (click)="authService.SignIn(email.value, password.value)">Log in!</button>
+          <hr>
           <button class="btn btn-lg btn-primary btn-block mb-1" type="submit" (click)="authService.loginWithGoogle()">Log in with your google account!</button>
-          <div class="border2"></div>
         </form>
+        <hr>
+          <div class="bottom">
+            <div class="border2"></div>
+          <a style="color: antiquewhite" routerLink="/forgotpassword">Forgot Password?</a>
+            <div class="border2"></div>
+            <a style="color: antiquewhite" routerLink="/registeruser"> Don't have an account?</a>
+      </div>
       </div>
 </div>
 

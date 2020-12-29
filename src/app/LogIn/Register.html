@@ -1,0 +1,27 @@
+<div class="page">
+<div class="displayTable">
+  <div class="displayTableCell">
+
+    <div class="authBlock">
+      <h3 style="color: antiquewhite " align="center">Sign Up</h3>
+
+      <div class="formGroup" align="center">
+        <input type="email" class="formControl" placeholder="Email Address" #email required>
+      </div>
+
+      <div class="formGroup" align="center">
+        <input type="password" class="formControl" placeholder="Password" #pass required>
+      </div>
+<div class="border2"></div>
+      <div class="formGroup" align="center">
+        <input type="button" class="btn btnPrimary" value="Sign Up" (click)="authService.SignUp(email.value, pass.value)">
+      </div>
+
+      </div>
+    </div>
+    <div class="redirectToLogin" align="center">
+      <p style="color: antiquewhite">Already have an account?</p>
+      <a  style="color: antiquewhite" routerLink="/login">Log In</a>
+    </div>
+  </div>
+</div>
