@@ -1,0 +1,28 @@
+<div class="page">
+  <a style="color: antiquewhite" routerLink="/updatedelete"> Update / Delete movies or TV Series</a>
+  <p style="color: antiquewhite"> Add a new movie/tv series</p>
+    <div class="form-group">
+        <input type="text" placeholder="Title" class="form-control" [(ngModel)]="Title">
+
+      <input type="text" placeholder="Year" class="form-control" [(ngModel)]="Year" >
+
+
+      <input type="text" placeholder="Description" class="form-control" [(ngModel)]="Description">
+
+      <input type="text" placeholder="Initial Rating" class="form-control" [(ngModel)]="Rating">
+
+
+      <input type="text" placeholder="Movie or TV Series?" class="form-control" [(ngModel)]="Type">
+
+
+      <input type="text" placeholder="Image URL" class="form-control" [(ngModel)]="Image" >
+
+      <input type="text" placeholder="Trailer URL" class="form-control" [(ngModel)]="Trailer" >
+    </div>
+  <div class="form-group">
+    <button class="submit-button" type="submit" (click)="createRecord()" [disabled]="!Title || !Year || !Description || !Rating || !Type || !Image || !Trailer">Add</button>
+  </div>
+  <div class="form-group">
+    <h3 style="color:antiquewhite" >{{message}}</h3>
+  </div>
+</div>

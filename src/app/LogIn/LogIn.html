@@ -9,9 +9,9 @@
      <input type="text" class="form-control mb-2" placeholder="Email" #email>
       <div class="border2"></div>
        <input type="password" class="form-control mb-2" placeholder="Password" #password>
-          <button class="btn btn-lg btn-primary btn-block mb-1" type="submit" (click)="authService.SignIn(email.value, password.value)">Log in!</button>
+          <a routerLink="navigate()"><button class="btn btn-lg btn-primary btn-block mb-1" type="submit" (click)="authService.SignIn(email.value, password.value)">Log in!</button></a>
           <hr>
-          <button class="btn btn-lg btn-primary btn-block mb-1" type="submit" (click)="authService.loginWithGoogle()">Log in with your google account!</button>
+          <button class="btn btn-lg btn-primary btn-block mb-1" type="submit" (click)="authService.loginWithGoogle()" routerLink="navigate()">Log in with your google account!</button>
         </form>
         <hr>
           <div class="bottom">

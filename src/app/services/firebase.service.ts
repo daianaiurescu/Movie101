@@ -32,6 +32,14 @@ import {query} from '@angular/animations';
   getTVSeriesOnly(){
     return this.afs.collection('/products', ref => ref.where('Type', '==', 'TVSeries'));
   }
+  // tslint:disable-next-line:typedef
+  createMovie(Title, Description, Type, Year, Rating, Image, Trailer){
+    return this.afs.collection('/products').add({
+      Title, Description, Type, Year, Rating, Image, Trailer
+    });
+  }
+  // tslint:disable-next-line:typedef
+  deleteItem(id){}
 }
 
 export {FirebaseService};
