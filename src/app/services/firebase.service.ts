@@ -3,13 +3,14 @@ import {Injectable} from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { observable} from 'rxjs';
 import {query} from '@angular/animations';
+import {AngularFireList} from '@angular/fire/database';
 
 @Injectable({providedIn: 'root'})
   class FirebaseService {
   // tslint:disable-next-line:typedef
   constructor(public afs: AngularFirestore) {
   }
-
+imagedetails: AngularFireList<any>;
   // tslint:disable-next-line:typedef
   getProducts() {
     return this.afs.collection('/products');
@@ -35,6 +36,7 @@ import {query} from '@angular/animations';
   // tslint:disable-next-line:typedef
   createMovie(Title, Description, Type, Year, Rating, Image, Trailer){
     return this.afs.collection('/products').add({
+      // tslint:disable-next-line:typedef
       Title, Description, Type, Year, Rating, Image, Trailer
     });
   }
