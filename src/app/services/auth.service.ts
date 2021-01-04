@@ -12,11 +12,9 @@ import {User} from '../user';
 })
 export class AuthService{
 
-  constructor(public  afAuth: AngularFireAuth, public  router: Router,  public ngZone: NgZone, public firestore: AngularFirestore){
-
   userData: any;
   User: User;
-  constructor(public  afAuth: AngularFireAuth, public  router: Router,  public ngZone: NgZone, private afs: AngularFirestore){
+  constructor(public afAuth: AngularFireAuth, public  router: Router,  public ngZone: NgZone, private afs: AngularFirestore){
     this.afAuth.authState.subscribe(user => {
       if (user){
         this.userData = user;
@@ -56,7 +54,7 @@ export class AuthService{
   SignUp(email, password) {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        const user = this.firestore.collection('users');
+        const user = this.afs.collection('users');
         this.message = 'Your account has been created!';
         return user.doc(result.user.uid).set({
             Email: result.user.email,
@@ -102,7 +100,7 @@ export class AuthService{
     });
   }
   // tslint:disable-next-line:typedef
-  private updateUserData(user) {
+  private updateUserData(user){
     // Sets user data to firestore on login
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     const data: User = {
