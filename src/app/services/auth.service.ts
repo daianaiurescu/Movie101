@@ -11,6 +11,9 @@ import {User} from '../user';
   providedIn: 'root'
 })
 export class AuthService{
+
+  constructor(public  afAuth: AngularFireAuth, public  router: Router,  public ngZone: NgZone, public firestore: AngularFirestore){
+
   userData: any;
   User: User;
   constructor(public  afAuth: AngularFireAuth, public  router: Router,  public ngZone: NgZone, private afs: AngularFirestore){
@@ -25,6 +28,10 @@ export class AuthService{
       }
     });
   }
+
+  user: any;
+  message: string;
+
   // tslint:disable-next-line:typedef
   SignIn(email, password) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
@@ -49,6 +56,12 @@ export class AuthService{
   SignUp(email, password) {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
+        const user = this.firestore.collection('users');
+        this.message = 'Your account has been created!';
+        return user.doc(result.user.uid).set({
+            Email: result.user.email,
+            Role: 'User'
+        });
       }).catch((error) => {
         window.alert(error.message);
       });
