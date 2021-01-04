@@ -1,0 +1,24 @@
+.page{
+  margin:0 auto;
+  width: 92%;
+  background: #1c1c1b;
+}
+.border2{
+  border-top: 30px solid #1c1c1b;
+  align: center;
+  width: 70%;
+}
+.border{
+  border-top: 5px solid #D1A227;
+  align-self: center;
+  width: 70%;
+}
+.content{
+  float:top;
+}
+.text{
+  display: inline-block;
+  vertical-align: top;
+  float:right;
+  width: 85%;
+}

@@ -9,12 +9,14 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import {HomePage} from './HomePage/HomePage';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MoviesPage} from './MoviesPage/MoviesPage';
 import {TVSeriesPage} from './TVSeriesPage/TVSeriesPage';
 import {LogIn} from './LogIn/LogIn';
 import {register} from './LogIn/register';
 import {ForgotPassword} from './LogIn/ForgotPassword';
+import {AdminPage} from './AdminPage/AdminPage';
+import {UpdateDelete} from './AdminPage/UpdateDelete';
 
 @NgModule({
   declarations: [
@@ -24,15 +26,18 @@ import {ForgotPassword} from './LogIn/ForgotPassword';
     TVSeriesPage,
     LogIn,
     register,
-    ForgotPassword
+    ForgotPassword,
+    AdminPage,
+    UpdateDelete
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    FormsModule,
-    AngularFireAuthModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        FormsModule,
+        AngularFireAuthModule,
+        ReactiveFormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

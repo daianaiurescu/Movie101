@@ -5,15 +5,22 @@ import 'firebase/auth';
 import firebase from 'firebase/app';
 import {async} from 'rxjs';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
+import {User} from '../user';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService{
+
   constructor(public  afAuth: AngularFireAuth, public  router: Router,  public ngZone: NgZone, public firestore: AngularFirestore){
+
+  userData: any;
+  User: User;
+  constructor(public  afAuth: AngularFireAuth, public  router: Router,  public ngZone: NgZone, private afs: AngularFirestore){
     this.afAuth.authState.subscribe(user => {
       if (user){
-        this.user = user;
-        localStorage.setItem('user', JSON.stringify(this.user));
+        this.userData = user;
+        localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user'));
       } else {
         localStorage.setItem('user', null);
@@ -21,15 +28,26 @@ export class AuthService{
       }
     });
   }
+
   user: any;
   message: string;
+
   // tslint:disable-next-line:typedef
   SignIn(email, password) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
+        console.log(result.user);
         this.ngZone.run(() => {
-          this.router.navigate(['userPage']);
+          if (result.user.email.endsWith('movie101.com')) {
+             this.router.navigate(['/adminpage']);
+          }
+          else {
+            this.router.navigate(['/home']);
+
+          //  navigate to user page instead of home page
+          }
         });
+        this.updateUserData(result.user);
       }).catch((error) => {
         window.alert(error.message);
       });
@@ -82,5 +100,18 @@ export class AuthService{
       localStorage.removeItem('user');
       this.router.navigate(['LogIn']);
     });
+  }
+  // tslint:disable-next-line:typedef
+  private updateUserData(user) {
+    // Sets user data to firestore on login
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+    const data: User = {
+      uid: user.uid,
+      Email: user.email,
+      Role: {
+        User: true
+      }
+    };
+    return userRef.set(data, { merge: true });
   }
 }
