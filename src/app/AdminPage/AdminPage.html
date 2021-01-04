@@ -1,0 +1,34 @@
+<div class="page">
+  <a style="color: antiquewhite" routerLink="/updatedelete"> Update / Delete movies or TV Series</a>
+  <div class="border2"></div>
+  <p style="color: antiquewhite"> Add a new movie/tv series</p>
+    <div class="form-group">
+      <input type="text" placeholder="Title" class="form-control" [(ngModel)]="Title">
+      <input type="text" placeholder="Year" class="form-control" [(ngModel)]="Year" >
+      <input type="text" placeholder="Description" class="form-control" [(ngModel)]="Description">
+      <input type="text" placeholder="Initial Rating" class="form-control" [(ngModel)]="Rating">
+      <input type="text" placeholder="Movie or TV Series?" class="form-control" [(ngModel)]="Type">
+      <div class="border2"></div>
+      <label style="color:antiquewhite"> Image file</label>
+      <input type="file" accept="*.png.jpg" (change)="upload($event)" class="form-control" [(ngModel)]="Image">
+      <div class="border2"></div>
+      <label style="color:antiquewhite"> Trailer file</label>
+      <input type="file" accept="*.mp4" (change)="upload2($event)" class="form-control" [(ngModel)]="Trailer">
+    </div>
+  <div class="form-group">
+    <button class="submit-button" type="submit" (click)="createRecord()" [disabled]="!Title || !Year || !Description || !Rating || !Type || !Image || !Trailer">Add</button>
+  </div>
+  <div class="form-group">
+    <h3 style="color:antiquewhite" >{{message}}</h3>
+  </div>
+  <hr class="border">
+  <h3 style="color: antiquewhite">Available movies and tv series</h3>
+  <div class="content" *ngFor="let item of this.items">
+    <img width="150 px" src="{{item.Image}}">
+    <div class="text">
+      <p style="color: antiquewhite">{{item.Title}}</p>
+      <p style="color: antiquewhite">{{item.Description}}</p>
+      <p style="color: antiquewhite">{{item.Year}}</p>
+    </div>
+</div>
+</div>
