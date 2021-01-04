@@ -1,9 +1,10 @@
 
 import {Injectable} from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import { observable} from 'rxjs';
 import {query} from '@angular/animations';
 import {AngularFireList} from '@angular/fire/database';
+import {Movie} from '../Movie';
 
 @Injectable({providedIn: 'root'})
   class FirebaseService {
@@ -11,6 +12,7 @@ import {AngularFireList} from '@angular/fire/database';
   constructor(public afs: AngularFirestore) {
   }
 imagedetails: AngularFireList<any>;
+  movieDoc: AngularFirestoreDocument<Movie>;
   // tslint:disable-next-line:typedef
   getProducts() {
     return this.afs.collection('/products');
@@ -41,7 +43,16 @@ imagedetails: AngularFireList<any>;
     });
   }
   // tslint:disable-next-line:typedef
-  deleteItem(id){}
+  deleteItem(movie: Movie){
+     this.movieDoc = this.afs.doc(`/products/${movie.uid}`);
+     this.movieDoc.delete();
+  }
+  // tslint:disable-next-line:typedef
+  updateItem(movie: Movie){
+    this.movieDoc = this.afs.doc(`/products/${movie.uid}`);
+    console.log(movie);
+    this.movieDoc.update(movie);
+  }
 }
 
 export {FirebaseService};

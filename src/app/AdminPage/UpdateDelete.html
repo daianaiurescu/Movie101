@@ -1,9 +1,14 @@
 <div class="page">
-<div *ngFor="let item of this.items">
-  <p style="color: antiquewhite">{{item.Title}}</p>
-  <p style="color: antiquewhite">{{item.Year}}</p>
-  <p style="color: antiquewhite">{{item.Rating}}</p>
-  <p> {{ item.UID}}</p>
-<!--  <button (click)="deleteMovie(item.UID)"> Delete </button>-->
+  <div class="content" *ngFor="let item of items">
+    <img width="150 px" src="{{item.Image}}">
+    <div class="text">
+      <input type="text" placeholder="Add new title" [(ngModel)]="item.Title" name="Title">
+      <input type="text" placeholder="Add new description" [(ngModel)]="item.Description" name="Description">
+      <input type="text" placeholder="Add new year" [(ngModel)]="item.Year" name="Year">
+      <input type="text" placeholder="Add new Rating" [(ngModel)]="item.Rating" name="Rating">
+      <button (click)="updateItem(item)"> Update Item</button>
+      <div class="border2"></div>
+      <button (click)="deleteMovie($event, item)">Delete {{item.Title}}</button>
+    </div>
 </div>
 </div>
